@@ -1,303 +1,118 @@
-// import React from 'react'
-import {
-  Box,
-  Grid,
-  IconButton,
-  FilledInput,
-  makeStyles,
-  Button,
-  Select,
-  MenuItem,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Typography,
-} from "@material-ui/core";
+import React, { useState } from 'react'
+import { FormControl, InputLabel, Input, Button } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 
-//  const Products = () => {
-//   return (
-//     <h1  style={{marginTop:"15vh"}}>Products</h1 >
-<form onSubmit={handleSubmit} id="myform">
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <FilledInput
-                value={job_type}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder=" Job title *"
-                disableUnderline
-              />
-            </Grid>
-            <Grid item xs={6}>
-              {/* <Select
-                onChange={(e) => setType(e.target.value)}
-                value={type}
-                fullWidth
-                disableUnderline
-                variant="filled"
-                defaultValue="Full Time"
-              >
-                <MenuItem value="Full Time"> Full time</MenuItem>
-                <MenuItem value="Part Time"> Part time</MenuItem>
-                <MenuItem value="Contract"> Contract </MenuItem>
-              </Select> */}
-               <FilledInput
-                onChange={(e) => setType(e.target.value)}
-                value={salary}
-                placeholder="  Pay per year $ *"
-                disableUnderline
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <FilledInput
-                onChange={(e) => setCompany(e.target.value)}
-                value={company}
-                placeholder=" Company Name *"
-                disableUnderline
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <FilledInput
-                onChange={(e) => setUrl(e.target.value)}
-                value={url}
-                placeholder=" Job URL *"
-                disableUnderline
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <Select
-                onChange={(e) => setLocation(e.target.value)}
-                value={location}
-                disableUnderline
-                fullWidth
-                variant="filled"
-                defaultValue="Remote"
-              >
-                <MenuItem value="Remote"> Remote</MenuItem>
-                <MenuItem value="In Office"> In Office</MenuItem>
-              </Select>
-            </Grid>
-            <Grid item xs={6}>
-              <FilledInput
-                onChange={(e) => setJob(e.target.value)}
-                value={image}
-                placeholder=" image link *"
-                disableUnderline
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FilledInput
-                value={description}
-                onChange={(e) => setDesc(e.target.value)}
-                placeholder=" description *"
-                fullWidth
-                multiline
-                rows={3}
-                disableUnderline
-              />
-            </Grid>
-          </Grid>
-        </form>
-//   )
-// }
-// export default Products
-import React, { useState } from "react";
-import {
-  Box,
-  Grid,
-  IconButton,
-  FilledInput,
-  makeStyles,
-  Button,
-  Select,
-  MenuItem,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Typography,
-} from "@material-ui/core";
-import { Close as CloseIcon } from "@material-ui/icons";
-const useStyles = makeStyles((theme) => ({
-  skillChip: {
-    margin: theme.spacing(0.5),
-    padding: theme.spacing(0.75),
-    fontSize: "14.5px",
-    borderRadius: "5px",
-    // transition: ".3s",
-    fontWeight: 600,
-    // backgroundColor: "lightblue",
-    border: `1px solid ${theme.palette.secondary.main}`,
-    color: theme.palette.secondary.main,
-    cursor: "pointer",
-    "&:hover": {
-      backgroundColor: theme.palette.secondary.main,
-      color: "#fff",
-    },
-  },
-}));
-const skills = [
-  "Javascript",
-  "React",
-  "vue",
-  "firebase",
-  "Node",
-  "MongoDb",
-  "Express",
-];
-export default function NewJob({ urll, handleAddJob,open,closeJob}) {
-  const classes = useStyles();
-  const [job_type, setTitle] = useState("");
-  const [salary, setType] = useState("");
-  const [company, setCompany] = useState("");
-  const [url, setUrl] = useState("");
-  const [description, setDesc] = useState("");
-  const [image, setJob] = useState("");
-  const [location, setLocation] = useState("");
-  const [skillss, setSkills] = useState([]);
-  const [old, setOld]=useState()
-  function handleSubmit(e) {
-    e.preventDefault();
-    const jobData = {
-      job_type,
-      salary,
-      company,
-      url,
-      description,
-      image,
-      location,
-      skillss,
-    };
-    fetch(urll, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(jobData),
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        handleAddJob(data);
-        setTitle("")
-        setType("")
-        setCompany("")
-        setUrl("")
-        setDesc("")
-        setJob("")
-        setLocation("")
-      });
-  }
-  return (
-    <Dialog open={open} fullWidth>
-      <DialogTitle>
-        <Box display="flex" justifyContent="space-between" alignItems="center">
-          Post Job
-          <IconButton>
-            <CloseIcon onClick={closeJob}/>
-          </IconButton>
-        </Box>
-      </DialogTitle>
-      <DialogContent>
-        <form onSubmit={handleSubmit} id="myform">
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <FilledInput
-                value={job_type}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder=" Job title *"
-                disableUnderline
-              />
-            </Grid>
-            <Grid item xs={6}>
-              {/* <Select
-                onChange={(e) => setType(e.target.value)}
-                value={type}
-                fullWidth
-                disableUnderline
-                variant="filled"
-                defaultValue="Full Time"
-              >
-                <MenuItem value="Full Time"> Full time</MenuItem>
-                <MenuItem value="Part Time"> Part time</MenuItem>
-                <MenuItem value="Contract"> Contract </MenuItem>
-              </Select> */}
-               <FilledInput
-                onChange={(e) => setType(e.target.value)}
-                value={salary}
-                placeholder="  Pay per year $ *"
-                disableUnderline
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <FilledInput
-                onChange={(e) => setCompany(e.target.value)}
-                value={company}
-                placeholder=" Company Name *"
-                disableUnderline
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <FilledInput
-                onChange={(e) => setUrl(e.target.value)}
-                value={url}
-                placeholder=" Job URL *"
-                disableUnderline
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <Select
-                onChange={(e) => setLocation(e.target.value)}
-                value={location}
-                disableUnderline
-                fullWidth
-                variant="filled"
-                defaultValue="Remote"
-              >
-                <MenuItem value="Remote"> Remote</MenuItem>
-                <MenuItem value="In Office"> In Office</MenuItem>
-              </Select>
-            </Grid>
-            <Grid item xs={6}>
-              <FilledInput
-                onChange={(e) => setJob(e.target.value)}
-                value={image}
-                placeholder=" image link *"
-                disableUnderline
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FilledInput
-                value={description}
-                onChange={(e) => setDesc(e.target.value)}
-                placeholder=" description *"
-                fullWidth
-                multiline
-                rows={3}
-                disableUnderline
-              />
-            </Grid>
-          </Grid>
-        </form>
-      </DialogContent>
-      <DialogActions>
-        <Box
-          color="red"
-          width="100%"
-          display="flex"
-          justifyContent="space-between"
-        >
-          <Typography variant="caption">*Required fields</Typography>
-          <Button
-            variant="contained"
-            disableElevation
-            color="primary"
-            type="submit"
-            form="myform"
-          >
-            Post Job
-          </Button>
-        </Box>
-      </DialogActions>
-    </Dialog>
-  );
+export default function Products() {
+
+    // const url = "https://vizahub.herokuapp.com/products";
+    const url = "http://localhost:9292/products";
+
+
+    const [title, setTitle] = useState("")
+    const [price, setPrice] = useState("")
+    const [image, setImage] = useState("")
+    const [description, setDescription] = useState("")
+    const [category, setCategory] = useState("")
+
+    function handleSubmit(e) {
+        e.preventDefault()
+
+        if (title === "" || price === "" || image === "" || description === "" || category === "") {
+            alert("Please fill all the fields")
+        } else {
+
+            const rate = Math.floor(Math.random() * 4.5) + 1
+            // const count = Math.floor(Math.random() * 500) + 1
+
+
+
+            const newProduct = {
+                title,
+                price,
+                description,
+                category,
+                image,
+                // "rating": {
+                //     "rate": rate,
+                //     "count": count
+                // }
+                "rating":rate
+            }
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newProduct),
+            })
+                .then((r) => r.json())
+                .then((data) => {
+                    // console.log(data)
+                    setTitle("")
+                    setPrice("")
+                    setDescription("")
+                    setCategory("")
+                    setImage("")
+
+                    window.location = '/';
+                });
+
+            // window.location = '/';
+        }
+    }
+
+    return (
+        <div>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    margin: 20,
+                    padding: 20
+                }}
+            >
+                <form style={{ width: "50%", border: "2px solid grey", padding: "10px" }}>
+                    <h1>ADD PRODUCT FORM</h1>
+
+                    <FormControl margin="normal" fullWidth>
+                        <InputLabel htmlFor="title">Title</InputLabel>
+                        <Input type="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    </FormControl>
+
+                    <FormControl margin="normal" fullWidth>
+                        <InputLabel htmlFor="price">Price</InputLabel>
+                        <Input type="number" value={price} onChange={(e) => setPrice(e.target.value)} />
+                    </FormControl>
+
+                    <FormControl margin="normal" fullWidth>
+                        <InputLabel htmlFor="image">Image</InputLabel>
+                        <Input type="text" value={image} onChange={(e) => setImage(e.target.value)} /><br></br>
+                    </FormControl>
+
+                    <FormControl fullWidth>
+                        <label htmlFor="category">choose category</label><br></br>
+                        <select name="category" value={category} id="category" style={{ padding: "15px" }} onChange={(e) => setCategory(e.target.value)}>
+                            <option value="beauty">Beauty</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="housing">Housing</option>
+                            <option value="laptop">Laptop</option>
+                            <option value="liquor">Liquor</option>
+                            <option value="sporting">Sporting</option>
+                        </select>
+                    </FormControl>
+
+                    <FormControl margin="normal" fullWidth>
+                        <InputLabel htmlFor="description">Description</InputLabel>
+                        <Input multiline rows={7} value={description} onChange={(e) => setDescription(e.target.value)} />
+                    </FormControl>
+
+                    <Button variant="contained" color="primary" size="large" endIcon={<AddIcon />} fullWidth onClick={handleSubmit}>
+                        ADD
+                    </Button>
+                </form>
+            </div>
+        </div>
+    )
 }

@@ -38,7 +38,7 @@ const Cards = ({ card }) => {
                   <CardMedia
                     component="img"
                     alt="items on shop"
-                    height="140"
+                    height="100px"
                     image={data.image}
                   />
                 </div>
