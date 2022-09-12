@@ -4,7 +4,6 @@ import AddIcon from '@mui/icons-material/Add';
 
 export default function Products() {
 
-    // const url = "https://vizahub.herokuapp.com/products";
     const url = "http://localhost:9292/products";
 
 
@@ -72,7 +71,7 @@ export default function Products() {
                     padding: 20
                 }}
             >
-                <form style={{ width: "50%", border: "2px solid grey", padding: "10px" }}>
+                <form style={{ marginTop: "14vh", width: "50%", border: "2px solid grey", padding: "10px" }}>
                     <h1>ADD PRODUCT FORM</h1>
 
                     <FormControl margin="normal" fullWidth>

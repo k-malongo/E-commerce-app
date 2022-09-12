@@ -38,7 +38,7 @@ const Cards = ({ card }) => {
                   <CardMedia
                     component="img"
                     alt="items on shop"
-                    height="100px"
+                    height="140px"
                     image={data.image}
                   />
                 </div>
@@ -52,10 +52,9 @@ const Cards = ({ card }) => {
                     {data.description}
                   </Typography>
                 </CardContent>
-                <CardActions>
+                <CardActions sx={{justifyContent:"space-between" }}>
                   <Button size="small">Share</Button>
-                  <Button onClick={() => setOpen(true)} size="small">Details</Button>
-                  <Button size="small">Delete</Button>
+                  <Button onClick={() => setOpen(true)} size="small">Reviews</Button>
 
                 </CardActions>
               </Card>
