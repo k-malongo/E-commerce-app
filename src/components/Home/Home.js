@@ -1,6 +1,7 @@
 import {Container,Typography,} from "@mui/material";
 import React,{useState,useEffect} from "react";
 import Cards from "./Cards"
+import SearchBar from "../SearchBar/SearchBar"
 
 const Home = ( ) => {
   const url = "http://localhost:9292/products";
@@ -17,7 +18,7 @@ const Home = ( ) => {
   return (
 <Container style={{ marginTop: "14vh",padding: "20px 0" }} >
     <Typography sx={{ mb: 2 }} variant="h1" style={{textAlign:"center"}} color="primary" >Shopee</Typography>
-
+      <SearchBar />
       <Cards card={card}  />
      
 </Container>
