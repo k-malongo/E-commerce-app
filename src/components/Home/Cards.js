@@ -12,18 +12,23 @@ import useStyles from '../theme'
 import MoreDetail from "./MoreDetail"
 
 const Cards = ({ card }) => {
+  
   const classes = useStyles()
   const [open, setOpen] = useState(false);
+  const [review, setReview] = useState([]);
+  const [idd, setIdd] = useState(0);
+
+
+  function hanleClickReview(rev,iid){
+    setOpen(true)
+    setReview(rev)
+    setIdd(iid)
+  }
 
   return (
     <>
-      <MoreDetail open={open} closeDetails={() => setOpen(false)} card={card} />
-      {/* {
-          card.map((data) => (
-
-        <MoreDetail open={open} closeDetails={() => setOpen(false)} />
-          ))
-        } */}
+      <MoreDetail open={open} closeDetails={() => setOpen(false)} review={review} id={idd}/>
+     
       <Grid container spacing={3}>
 
         {
@@ -54,7 +59,8 @@ const Cards = ({ card }) => {
                 </CardContent>
                 <CardActions sx={{justifyContent:"space-between" }}>
                   <Button size="small">Share</Button>
-                  <Button onClick={() => setOpen(true)} size="small">Reviews</Button>
+                  <Button onClick={() => hanleClickReview(data.reviews,data.id)} size="small">Reviews</Button>
+                  {/* <Button onClick={() => alert(data.id)} size="small">Reviews</Button> */}
 
                 </CardActions>
               </Card>

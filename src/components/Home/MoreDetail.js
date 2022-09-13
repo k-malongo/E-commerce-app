@@ -1,53 +1,138 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import {
   Box,
   Dialog,
   DialogTitle,
-  DialogContent,
-  DialogActions,
   Typography,
-  Grid,
   Card,
-  CardMedia,
   CardContent,
   CardActions,
   Button,
+  FormControl,
+  InputLabel,
+  Input,
 } from "@mui/material";
-// import { Close as CloseIcon } from "@material-ui/icons";
-export default function ViewJob({ open, closeDetails,card }) {
+// import { Close as CloseIcon } from "@mui/icons-material";
+export default function ViewJob({ open, closeDetails, review, id }) {
+  const [name, setName] = useState("");
+  const [comment, setComment] = useState("");
+
+  console.log(id)
+
+  // const url = "http://localhost:9292/reviews";
+  // const [review, setReview] = useState([]);
+  // useEffect(() => {
+  //   fetch(url+"/"+id)
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       // setReview(data);
+  //       console.log(data)
+  //     });
+  // }, [id]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const newComment = {
+      user_name:name,
+      comment:comment,
+      // product_id:id
+      
+    };
+    console.log(newComment)
+    // fetch("http://localhost:9292/reviews", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(newComment),
+    // })
+    //   .then((r) => r.json())
+    //   .then((data) => {
+    //     // console.log(data)
+    //     setName("");
+    //     setComment("");
+    //   });
+  }
   return (
-    <div onClick={closeDetails}>
-    
+    <div>
+      <Dialog open={open} fullWidth>
+        <Button size="small" onClick={closeDetails}>
+          close
+        </Button>
 
-    <Dialog open={open} fullWidth >
-      <DialogTitle>
-        <Box  justifyContent="space-between" alignItems="center">
-       
-             
-             <Card sx={{ width: 500, marginLeft: "25px", marginRight: "1px", p:"2" }}>
-               
-               <CardContent>
+        <DialogTitle>
+         { 
+         review.map((data) => (
+         <Box justifyContent="space-between" alignItems="center" >
+          <div key={data.id}>
+            <Card
+            key={data.id}
+              sx={{
+                width: 500,
+                marginLeft: "25px",
+                marginRight: "1px",
+                marginBotton: "5px",
+                marginTop: "5px",
+                p: "2",
+              }}
+            >
+              <CardContent>
+                <Typography gutterBottom variant="body2">
+                  {data.user_name}
+                </Typography>
 
-                 <Typography gutterBottom variant="body2" >
-                   Name
-                 </Typography>
-
-                 <Typography variant="h5" color="text.secondary" >
-                   Comment
-                 </Typography>
-               </CardContent>
-               <CardActions>
-                
-                 <Button size="small">Delete</Button>
-                 <Button size="small">Edit</Button>
-
-
-               </CardActions>
-             </Card>
-        </Box>
-      </DialogTitle>
-      <DialogActions>Submit</DialogActions>
-    </Dialog>
-  </div>
+                <Typography variant="h5" color="text.secondary">
+                  {data.comment}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small">Delete</Button>
+                <Button size="small">Edit</Button>
+              </CardActions>
+            </Card>
+            
+            </div>
+          </Box>
+           ))
+          }
+          <form
+              style={{
+                width: "80%",
+                border: "2px solid grey",
+                padding: "10px",
+                marginLeft: "40px",
+                marginTop: "5px",
+              }}
+            >
+              <FormControl margin="normal" fullWidth>
+                <InputLabel htmlFor="title">Name</InputLabel>
+                <Input
+                  type="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </FormControl>
+              <FormControl margin="normal" fullWidth>
+                <InputLabel htmlFor="title">Comment</InputLabel>
+                <Input
+                  type="comment"
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                />
+              </FormControl>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                fullWidth
+                onClick={handleSubmit}
+              >
+                ADD
+              </Button>
+            </form>
+        </DialogTitle>
+      </Dialog>
+    </div>
   );
 }

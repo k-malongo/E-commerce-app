@@ -3,7 +3,8 @@ import React,{useState,useEffect} from "react";
 import Cards from "./Cards"
 
 const Home = ( ) => {
-  const url = "https://vizahub.herokuapp.com/products";
+  const url = "http://localhost:9292/products";
+  // const url = "https://vizahub.herokuapp.com/products";
   const [card, setCard] = useState([]);
   useEffect(() => {
     fetch(url)
