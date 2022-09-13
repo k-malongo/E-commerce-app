@@ -20,6 +20,18 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
 
   // console.log(id)
 
+  function handleDeleteClick(iidd) {
+    fetch(`http://localhost:9292/reviews/${id}`, {
+      method: "DELETE",
+    });
+
+    handleDeleteReview(iidd);
+  }
+
+  function handleDeleteReview(ids) {
+    const updatedReviews = review.filter((review) => review.id !== ids);
+    setReview(updatedReviews);
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -77,7 +89,7 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Delete</Button>
+                <Button size="small" onClick={()=>handleDeleteClick(data.id)}>Delete</Button>
                 <Button size="small">Edit</Button>
               </CardActions>
             </Card>
