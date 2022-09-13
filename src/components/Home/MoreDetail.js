@@ -18,41 +18,30 @@ export default function ViewJob({ open, closeDetails, review, id }) {
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
 
-  console.log(id)
+  // console.log(id)
 
-  // const url = "http://localhost:9292/reviews";
-  // const [review, setReview] = useState([]);
-  // useEffect(() => {
-  //   fetch(url+"/"+id)
-  //     .then((r) => r.json())
-  //     .then((data) => {
-  //       // setReview(data);
-  //       console.log(data)
-  //     });
-  // }, [id]);
 
   function handleSubmit(e) {
     e.preventDefault();
     const newComment = {
       user_name:name,
       comment:comment,
-      // product_id:id
+      product_id:id
       
     };
     console.log(newComment)
-    // fetch("http://localhost:9292/reviews", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(newComment),
-    // })
-    //   .then((r) => r.json())
-    //   .then((data) => {
-    //     // console.log(data)
-    //     setName("");
-    //     setComment("");
-    //   });
+    fetch("http://localhost:9292/reviews", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newComment),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        setName("");
+        setComment("");
+      });
   }
   return (
     <div>
