@@ -18,7 +18,6 @@ const Navbar = () => {
   const theme = useTheme();
   // console.log(theme)
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
-  // console.log("my name is musa");
   return (
     <React.Fragment>
       <AppBar sx={{ background: "#063970" }}>
