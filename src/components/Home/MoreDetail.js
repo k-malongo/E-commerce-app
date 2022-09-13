@@ -21,7 +21,7 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
   // console.log(id)
 
   function handleDeleteClick(iidd) {
-    fetch(`http://localhost:9292/reviews/${id}`, {
+    fetch(`http://localhost:9292/reviews/${iidd}`, {
       method: "DELETE",
     });
 

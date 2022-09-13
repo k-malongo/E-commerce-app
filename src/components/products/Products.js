@@ -37,7 +37,7 @@ export default function Products() {
                 // }
                 "rating":rate
             }
-
+            console.log(newProduct)
             fetch(url, {
                 method: "POST",
                 headers: {
