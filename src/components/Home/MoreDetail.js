@@ -14,7 +14,7 @@ import {
   Input,
 } from "@mui/material";
 // import { Close as CloseIcon } from "@mui/icons-material";
-export default function ViewJob({ open, closeDetails, review, id }) {
+export default function ViewJob({ open, closeDetails, review, id, setReview }) {
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
 
@@ -39,6 +39,7 @@ export default function ViewJob({ open, closeDetails, review, id }) {
     })
       .then((r) => r.json())
       .then((data) => {
+        setReview([...review, data])
         setName("");
         setComment("");
       });

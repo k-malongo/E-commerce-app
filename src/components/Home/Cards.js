@@ -27,7 +27,7 @@ const Cards = ({ card }) => {
 
   return (
     <>
-      <MoreDetail open={open} closeDetails={() => setOpen(false)} review={review} id={idd}/>
+      <MoreDetail open={open} closeDetails={() => setOpen(false)} review={review} id={idd} setReview={setReview}/>
      
       <Grid container spacing={3}>
 

@@ -18,7 +18,7 @@ const Home = ( ) => {
 <Container style={{ marginTop: "14vh",padding: "20px 0" }} >
     <Typography sx={{ mb: 2 }} variant="h1" style={{textAlign:"center"}} color="primary" >Shopee</Typography>
 
-      <Cards card={card} />
+      <Cards card={card}  />
      
 </Container>
 
