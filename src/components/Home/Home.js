@@ -15,8 +15,13 @@ const Home = ( ) => {
         setCard(data);
       });
   }, []);
-  function searchFunction(e){
-    console.log(e)
+  function searchFunction(searchValue) {
+    const itemsSearch = card.filter(
+      (item) =>
+        item.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+        item.category.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setCard(itemsSearch);
   }
 
   return (
