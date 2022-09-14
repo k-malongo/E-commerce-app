@@ -17,6 +17,9 @@ import {
 export default function ViewJob({ open, closeDetails, review, id, setReview }) {
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
+  const [editId, setEditId] = useState(1)
+
+  const [editBtn, setEditBtn] = useState(false);
 
   // console.log(id)
 
@@ -33,6 +36,13 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
     setReview(updatedReviews);
   }
 
+  function handleEditClick(dataR){
+    setName(dataR.user_name)
+    setComment(dataR.comment)
+    setEditBtn(true)
+    setEditId(dataR.id)
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     const newComment = {
@@ -41,7 +51,22 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
       product_id:id
       
     };
-    console.log(newComment)
+    if(editBtn){
+      fetch(`http://localhost:9292/reviews/${editId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newComment),
+      })
+        .then((r) => r.json())
+        .then((data) => {
+          setName("");
+          setComment("");
+        });    
+      }
+
+    else{
     fetch("http://localhost:9292/reviews", {
       method: "POST",
       headers: {
@@ -55,6 +80,7 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
         setName("");
         setComment("");
       });
+    }
   }
   return (
     <div>
@@ -90,7 +116,7 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
               </CardContent>
               <CardActions>
                 <Button size="small" onClick={()=>handleDeleteClick(data.id)}>Delete</Button>
-                <Button size="small">Edit</Button>
+                <Button size="small" onClick={()=>handleEditClick(data)}>Edit</Button>
               </CardActions>
             </Card>
             
@@ -130,7 +156,7 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
                 fullWidth
                 onClick={handleSubmit}
               >
-                ADD
+                {editBtn?"EDIT":"ADD"}
               </Button>
             </form>
         </DialogTitle>
