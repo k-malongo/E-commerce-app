@@ -34,7 +34,7 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
     setReview(updatedReviews);
   }
 
-  function handleEditClick(dataR){
+  function handleEditClick(dataR) {
     setName(dataR.user_name)
     setComment(dataR.comment)
     setEditBtn(true)
@@ -44,12 +44,12 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
   function handleSubmit(e) {
     e.preventDefault();
     const newComment = {
-      user_name:name,
-      comment:comment,
-      product_id:id
-      
+      user_name: name,
+      comment: comment,
+      product_id: id
+
     };
-    if(editBtn){
+    if (editBtn) {
       fetch(`http://localhost:9292/reviews/${editId}`, {
         method: "PATCH",
         headers: {
@@ -60,23 +60,23 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
         .then((r) => r.json())
         .then((data) => {
           updateList(data)
-        });    
-      }
+        });
+    }
 
-    else{
-    fetch("http://localhost:9292/reviews", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newComment),
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        setReview([...review, data])
-        setName("");
-        setComment("");
-      });
+    else {
+      fetch("http://localhost:9292/reviews", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newComment),
+      })
+        .then((r) => r.json())
+        .then((data) => {
+          setReview([...review, data])
+          setName("");
+          setComment("");
+        });
     }
   }
   function updateList(updatedItem) {
@@ -100,75 +100,75 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
         </Button>
 
         <DialogTitle>
-         { 
-         review.map((data) => (
-         <Box justifyContent="space-between" alignItems="center" >
-          <div key={data.id}>
-            <Card
-            key={data.id}
-              sx={{
-                width: 500,
-                marginLeft: "25px",
-                marginRight: "1px",
-                marginBotton: "5px",
-                marginTop: "5px",
-                p: "2",
-              }}
-            >
-              <CardContent>
-                <Typography gutterBottom variant="body2">
-                  {data.user_name}
-                </Typography>
+          {
+            review.map((data) => (
+              <Box justifyContent="space-between" alignItems="center" >
+                <div key={data.id}>
+                  <Card
+                    key={data.id}
+                    sx={{
+                      width: 500,
+                      marginLeft: "25px",
+                      marginRight: "1px",
+                      marginBotton: "5px",
+                      marginTop: "5px",
+                      p: "2",
+                    }}
+                  >
+                    <CardContent>
+                      <Typography gutterBottom variant="body2">
+                        {data.user_name}
+                      </Typography>
 
-                <Typography variant="h5" color="text.secondary">
-                  {data.comment}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small" onClick={()=>handleDeleteClick(data.id)}>Delete</Button>
-                <Button size="small" onClick={()=>handleEditClick(data)}>Edit</Button>
-              </CardActions>
-            </Card>
-            
-            </div>
-          </Box>
-           ))
+                      <Typography variant="h5" color="text.secondary">
+                        {data.comment}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button size="small" onClick={() => handleDeleteClick(data.id)}>Delete</Button>
+                      <Button size="small" onClick={() => handleEditClick(data)}>Edit</Button>
+                    </CardActions>
+                  </Card>
+
+                </div>
+              </Box>
+            ))
           }
           <form
-              style={{
-                width: "80%",
-                border: "2px solid grey",
-                padding: "10px",
-                marginLeft: "40px",
-                marginTop: "5px",
-              }}
+            style={{
+              width: "80%",
+              border: "2px solid grey",
+              padding: "10px",
+              marginLeft: "40px",
+              marginTop: "5px",
+            }}
+          >
+            <FormControl margin="normal" fullWidth>
+              <InputLabel htmlFor="title">Name</InputLabel>
+              <Input
+                type="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </FormControl>
+            <FormControl margin="normal" fullWidth>
+              <InputLabel htmlFor="title">Comment</InputLabel>
+              <Input
+                type="comment"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+              />
+            </FormControl>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              fullWidth
+              onClick={handleSubmit}
             >
-              <FormControl margin="normal" fullWidth>
-                <InputLabel htmlFor="title">Name</InputLabel>
-                <Input
-                  type="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </FormControl>
-              <FormControl margin="normal" fullWidth>
-                <InputLabel htmlFor="title">Comment</InputLabel>
-                <Input
-                  type="comment"
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                />
-              </FormControl>
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                fullWidth
-                onClick={handleSubmit}
-              >
-                {editBtn?"EDIT":"ADD"}
-              </Button>
-            </form>
+              {editBtn ? "EDIT" : "ADD"}
+            </Button>
+          </form>
         </DialogTitle>
       </Dialog>
     </div>

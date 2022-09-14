@@ -7,16 +7,7 @@ import Home from "./components/Home/Home";
 
 
 function App() {
-// const url = "https://vizahub.herokuapp.com/products";
-
-//   const [card, setCard] = useState([]);
-//   useEffect(() => {
-//     fetch(url)
-//       .then((r) => r.json())
-//       .then((data) => {
-//         setCard(data);
-//       });
-//   }, []);
+/
 
   return (
     <>
