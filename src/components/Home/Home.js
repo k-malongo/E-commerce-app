@@ -7,7 +7,7 @@ const Home = ( ) => {
   const url = "http://localhost:9292/products";
   // const url = "https://vizahub.herokuapp.com/products";
   const [card, setCard] = useState([]);
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
   useEffect(() => {
     fetch(url)
       .then((r) => r.json())
@@ -18,8 +18,8 @@ const Home = ( ) => {
   function searchFunction(searchValue) {
     const itemsSearch = card.filter(
       (item) =>
-        item.title.toLowerCase().includes(searchValue.toLowerCase()) ||
-        item.category.toLowerCase().includes(searchValue.toLowerCase())
+        item.title.toLowerCase().includes(searchValue.toLowerCase())
+        // item.category.toLowerCase().includes(searchValue.toLowerCase())
     );
     setCard(itemsSearch);
   }
