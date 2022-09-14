@@ -4,7 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 export default function Products() {
 
-    const url = "http://localhost:9292/products";
+    const url = "https://ecommercerubyapi.herokuapp.com/products";
 
 
     const [title, setTitle] = useState("")

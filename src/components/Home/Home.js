@@ -4,7 +4,7 @@ import Cards from "./Cards"
 import SearchBar from "../SearchBar/SearchBar"
 
 const Home = ( ) => {
-  const url = "http://localhost:9292/products";
+  const url = "https://ecommercerubyapi.herokuapp.com/products";
   const [card, setCard] = useState([]);
   useEffect(() => {
     fetch(url)

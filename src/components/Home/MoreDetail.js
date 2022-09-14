@@ -22,7 +22,7 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
 
 
   function handleDeleteClick(iidd) {
-    fetch(`http://localhost:9292/reviews/${iidd}`, {
+    fetch(`https://ecommercerubyapi.herokuapp.com/reviews/${iidd}`, {
       method: "DELETE",
     });
 
@@ -50,7 +50,7 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
 
     };
     if (editBtn) {
-      fetch(`http://localhost:9292/reviews/${editId}`, {
+      fetch(`https://ecommercerubyapi.herokuapp.com/reviews/${editId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -64,7 +64,7 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
     }
 
     else {
-      fetch("http://localhost:9292/reviews", {
+      fetch("https://ecommercerubyapi.herokuapp.com/reviews", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
