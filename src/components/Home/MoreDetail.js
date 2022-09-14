@@ -61,8 +61,7 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
       })
         .then((r) => r.json())
         .then((data) => {
-          setName("");
-          setComment("");
+          updateList(data)
         });    
       }
 
@@ -81,6 +80,19 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
         setComment("");
       });
     }
+  }
+  function updateList(updatedItem) {
+    const updatedItems = review.map((item) => {
+      if (item.id === updatedItem.id) {
+        return updatedItem;
+      } else {
+        return item;
+      }
+    });
+    setReview(updatedItems);
+    setEditBtn(false)
+    setName("");
+    setComment("");
   }
   return (
     <div>
