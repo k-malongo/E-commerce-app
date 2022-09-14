@@ -13,7 +13,6 @@ import {
   InputLabel,
   Input,
 } from "@mui/material";
-// import { Close as CloseIcon } from "@mui/icons-material";
 export default function ViewJob({ open, closeDetails, review, id, setReview }) {
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
@@ -21,7 +20,6 @@ export default function ViewJob({ open, closeDetails, review, id, setReview }) {
 
   const [editBtn, setEditBtn] = useState(false);
 
-  // console.log(id)
 
   function handleDeleteClick(iidd) {
     fetch(`http://localhost:9292/reviews/${iidd}`, {

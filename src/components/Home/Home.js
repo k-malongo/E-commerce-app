@@ -5,9 +5,7 @@ import SearchBar from "../SearchBar/SearchBar"
 
 const Home = ( ) => {
   const url = "http://localhost:9292/products";
-  // const url = "https://vizahub.herokuapp.com/products";
   const [card, setCard] = useState([]);
-  // const [search, setSearch] = useState("");
   useEffect(() => {
     fetch(url)
       .then((r) => r.json())
@@ -19,7 +17,6 @@ const Home = ( ) => {
     const itemsSearch = card.filter(
       (item) =>
         item.title.toLowerCase().includes(searchValue.toLowerCase())
-        // item.category.toLowerCase().includes(searchValue.toLowerCase())
     );
     setCard(itemsSearch);
   }
