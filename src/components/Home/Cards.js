@@ -35,7 +35,7 @@ const Cards = ({ card }) => {
           card.map((data) => (
 
            
-            <Grid item xs={12} sm={6} lg={3} md={4} style={{ marginBottom: "14" }} key={data.id}>
+            <Grid item xs={12} sm={6} lg={3} md={3} style={{ marginBottom: "14" }} key={data.id}>
               <Card sx={{ maxWidth: 350, marginLeft: "25px", marginRight: "1px", p:"2" }} className={classes.card}>
                 <div
                   style={{ margin: "10px" }}
