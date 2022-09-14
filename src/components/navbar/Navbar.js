@@ -36,7 +36,7 @@ const Navbar = () => {
                 indicatorColor="secondary"
               >
                 <Tab  label="Home" to='/' component={Link}/>
-                <Tab  label="products" to='/products' component={Link}/>
+                <Tab  label="Addproducts" to='/products' component={Link}/>
 
                 {/* {
                   PAGES.map((page,index)=>(
