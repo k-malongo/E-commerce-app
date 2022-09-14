@@ -24,7 +24,7 @@ import { Box,  makeStyles, FilledInput } from '@material-ui/core'
 export default function SearchBar({searchFunction}) {
   const classes = useStyles()
   return (
-    <Box p={2} mt={-5} mb={5} ml={4} className={classes.wrapper} width={750} justifyContent={"center"} alignContent={"center"} alignItems={"center"}>
+    <Box p={2} mt={-5} mb={8} ml={4} className={classes.wrapper} width={750} justifyContent={"center"} alignContent={"center"} alignItems={"center"}>
 
       <FilledInput 
       placeholder='Search for product'
